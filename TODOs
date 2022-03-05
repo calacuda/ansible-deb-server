@@ -3,4 +3,4 @@ TODO's:
 - [  ] install packages
 - [  ] update machine
 - [  ] configure ssh to not allow root login?
-
+- [  ] bring in ZSH/Emacs/Neovim configs 
