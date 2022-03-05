@@ -1,0 +1,45 @@
+exa
+zsh
+zsh-autosuggestions
+zsh-syntax-highlighting
+zsh-history-substring-search
+bat
+python3-pip
+python3-pipdeptree
+git
+hub
+tmux
+htop
+sudo
+doas
+neovim
+vim
+emacs
+kitty-terminfo
+tor
+proxychains4
+neofetch
+rg
+zoxide
+youtube-dl
+build-essential
+
+
+## Maybe
+
+# pypy3
+python3-ipython
+# nmap
+
+
+
+## the folowing packages are from non-standard repos or github find intructions above the packages.
+
+
+# instructions: https://software.opensuse.org/download.html?project=shells%3Azsh-users%3Azsh-history-substring-search&package=zsh-history-substring-search
+# zsh-history-substring-search
+
+# instructions: https://github.com/romkatv/powerlevel10k#installation 
+# destination for git clone: /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+# p10k
+
