@@ -2,4 +2,4 @@
   ansible.builtin.git:
     repo: https://github.com/romkatv/powerlevel10k.git
     depth: 1
-    dest: /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+    dest: /usr/share/zsh-theme-powerlevel10k

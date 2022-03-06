@@ -408,6 +408,7 @@ export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PATH
 
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="/sbin:$PATH"
 
 #neofetch | lolcat
 #screenfetch
