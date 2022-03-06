@@ -1,0 +1,3 @@
+- name: change to zsh 
+  ansible.builtin.shell:
+    cmd: "chsh -s $(which zsh) yogurt"

@@ -1,3 +1,8 @@
+- name: install apt packages 
+  apt:
+    name: gpg
+    state: latest
+
 - name: Add repo for zsh-history-substring-search into sources list
   ansible.builtin.apt_repository:
     repo: deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-history-substring-search/Debian_11/ /

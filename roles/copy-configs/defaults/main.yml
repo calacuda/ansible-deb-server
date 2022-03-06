@@ -1,0 +1,3 @@
+nvim_configs:
+  - deb-bak/.config/nvim/.netrwhist
+  - deb-bak/.config/nvim/init.vim

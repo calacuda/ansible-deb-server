@@ -4,5 +4,7 @@
   roles:
     - { role: install-apt-packages, become: yes }
     - { role: install-git-packages, become: yes }
+    - { role: install-usr-packages, become: no }
+    # - { role: change-default-shell, become: yes }
     # - { role: install-rust, become: no }
     - { role: copy-configs, become: no }

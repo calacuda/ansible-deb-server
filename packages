@@ -19,7 +19,7 @@ kitty-terminfo
 tor
 proxychains4
 neofetch
-rg
+ripgrep
 zoxide
 youtube-dl
 build-essential

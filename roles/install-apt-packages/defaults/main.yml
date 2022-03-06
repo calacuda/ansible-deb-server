@@ -1,4 +1,4 @@
-apt_ackages:
+apt_packages:
 - exa
 - zsh
 - zsh-autosuggestions
@@ -20,8 +20,10 @@ apt_ackages:
 - tor
 - proxychains4
 - neofetch
-- rg
+- ripgrep
 - zoxide
 - youtube-dl
 - build-essential
 - python3-ipython
+- rsync
+- curl

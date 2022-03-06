@@ -1,10 +1,10 @@
 - name: Copy .config/nvim
-  ansible.builtin.copy:
-    src: deb-bak/.config/nvim/
+  synchronize:
+    src: deb-bak/.config/nvim
     dest: ~/.config/
-    owner: yogurt
-    group: yogurt
-    mode: 'preserve'
+    owner: True
+    group: True
+    mode: 'push'
 
 - name: Copy .zshrc
   ansible.builtin.copy:
