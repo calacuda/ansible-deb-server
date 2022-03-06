@@ -1,14 +1,21 @@
----
+- name: Add repo for zsh-history-substring-search into sources list
+  ansible.builtin.apt_repository:
+    repo: deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-history-substring-search/Debian_11/ /
+    state: present
+    filename: shells:zsh-users:zsh-history-substring-search
+    update_cache: yes
 
-- hosts: all
-   become: true
-   tasks:
- 
-   - name: update repository index
-     apt:
-       update_cache: yes
- 
-   - name: install apt packages 
-     apt:
-       name: "{{ apt_packages }}"
-       state: latest
+- name: Add gpg key for zsh-history-substring-search  
+  ansible.builtin.apt_key:
+    url: https://download.opensuse.org/repositories/shells:zsh-users:zsh-history-substring-search/Debian_11/Release.key
+    keyring: /etc/apt/trusted.gpg.d/shells_zsh-users_zsh-history-substring-search.gpg
+    state: present
+
+- name: update repository index
+  apt:
+    update_cache: yes
+
+- name: install apt packages 
+  apt:
+    name: "{{ apt_packages }}"
+    state: latest
