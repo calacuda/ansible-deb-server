@@ -2,6 +2,7 @@
 
 - hosts: all
   roles:
-    - install-apt-packages
-    - install-git-packages
-    - install-rust
+    - { role: install-apt-packages, become: yes }
+    - { role: install-git-packages, become: yes }
+    # - { role: install-rust, become: no }
+    - { role: copy-configs, become: no }

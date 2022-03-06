@@ -1,0 +1,134 @@
+#!/usr/bin/sh
+
+#
+### CUSTOM ALIASES (specific to this machine -- panda --)
+#
+
+# renames
+alias pls="sudo "
+alias please="sudo "
+alias wyk="sudo "
+alias sudo="sudo "
+alias emacs="emacs -nw "
+alias em="emacs "
+alias git="hub "
+# alias ls="ls --color=auto "  # ls replaced with exa
+# alias la="ls -la "           # ls replaced with exa
+# alias 4non="sudo 4nonimizer "
+alias cl="clear"
+alias nv="nvim "
+alias ln="ln -s "
+#alias cat="bat "
+#alias grep="rg "
+#alias find="fd "
+alias bat="batcat "
+
+# python
+# alias miniconda="/home/yogurt/.miniconda3/bin/python3 "
+# alias python3="/usr/bin/python "
+# alias python="miniconda "
+# alias pip="/home/yogurt/.miniconda3/bin/python3 -m pip "
+# alias pip="pip3 "
+alias py="python "
+alias ipy="ipython "
+alias pypy="pypy3 "
+
+# cyber security
+alias start_tor="systemctl start tor"
+alias nmap-base="nmap -T4 --reason -A --osscan-guess --version-all -oA "
+
+# Changing "ls" to "exa"
+exa_mod="exa --icons --classify --color=always --group-directories-first"
+alias ls="$exa_mod " # my preferred listing
+alias la="$exa_mod -al "  # all files and dirs
+alias ll="$exa_mod -l "  # long format
+alias lt="$exa_mod -aT " # tree listing
+alias l.="$exa_mod -ld .* " # hidden files and dirs long listing
+
+# root privileges
+# alias doas="doas --"
+
+# navigation
+alias ..='cd ..'
+alias .2='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../..'
+alias .5='cd ../../../..'
+alias .6='cd ../../../../..'
+alias cdl='cd $OLDPWD'
+alias go-back="cd -" # same as 'cd $OLDPWD' just more official
+
+# git
+alias addup='git add -u'
+alias addall='git add .'
+#alias branch='git branch'
+#alias checkout='git checkout'
+#alias commit='git commit -m'
+#alias fetch='git fetch'
+#alias pull='git pull origin'
+#alias push='git push origin'
+#alias status='git status'
+#alias tag='git tag'
+#alias newtag='git tag -a'
+
+#free
+alias free="free -mt"
+
+#use all cores
+alias uac="sh ~/.bin/main/000*"
+
+#continue download
+alias wget="wget -c"
+
+#userlist
+alias userlist="cut -d: -fs1 /etc/passwd"
+
+#grub update
+alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+
+#add new fonts
+alias update-fc='sudo fc-cache -fv'
+
+#check vulnerabilities microcode
+alias microcode='grep . /sys/devices/system/cpu/vulnerabilities/*'
+
+#search content with ripgrep
+alias rg="rg --sort path"
+
+#get the error messages from journalctl
+alias jctl="journalctl -p 3 -xb"
+
+#nano for important configuration files
+#know what you do in these files
+alias ngrub="sudo $EDITOR /etc/default/grub"
+alias nconfgrub="sudo $EDITOR /boot/grub/grub.cfg"
+alias nmkinitcpio="sudo $EDITOR /etc/mkinitcpio.conf"
+alias nfstab="sudo $EDITOR /etc/fstab"
+alias nnsswitch="sudo $EDITOR /etc/nsswitch.conf"
+alias nsamba="sudo $EDITOR /etc/samba/smb.conf"
+alias nb="$EDITOR ~/.bashrc"
+alias nz="$EDITOR ~/.zshrc"
+
+# youtube-dl
+alias youtube-dl="youtube-dl -4 "
+alias yta-aac="youtube-dl --no-playlist --extract-audio --audio-format aac --add-metadata "
+alias yta-best="youtube-dl --no-playlist --extract-audio --audio-format best --add-metadata "
+alias yta-flac="youtube-dl--no-playlist  --extract-audio --audio-format flac --add-metadata "
+alias yta-m4a="youtube-dl--no-playlist  --extract-audio --audio-format m4a --add-metadata "
+alias yta-mp3="youtube-dl --extract-audio --audio-format mp3 --add-metadata "
+alias yta-opus="youtube-dl --no-playlist --extract-audio --audio-format opus --add-metadata "
+alias yta-vorbis="youtube-dl --no-playlist --extract-audio --audio-format vorbis --add-metadata "
+alias yta-wav="youtube-dl --no-playlist --extract-audio --audio-format wav --add-metadata "
+alias ytv-best="youtube-dl --no-playlist -f bestvideo+bestaudio "
+alias ytmp3="yta-mp3 "
+
+# the terminal rickroll
+alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
+
+# Misc
+alias reset="cl && source ~/.zshrc " # clears the term keeping PWD.
+alias restore="cl && cd ~/ && source ~/.zshrc " # make the terminal new again.
+alias tron="ssh sshtron.zachlatta.com "
+
+# doas must be alaiased last not a clue why tho...
+#alias doas="doas "

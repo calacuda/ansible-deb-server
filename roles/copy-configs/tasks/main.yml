@@ -1,0 +1,39 @@
+- name: Copy .config/nvim
+  ansible.builtin.copy:
+    src: deb-bak/.config/nvim/
+    dest: ~/.config/
+    owner: yogurt
+    group: yogurt
+    mode: 'preserve'
+
+- name: Copy .zshrc
+  ansible.builtin.copy:
+    src: deb-bak/.zshrc
+    dest: ~/.zshrc
+    owner: yogurt
+    group: yogurt
+    mode: 'preserve'
+
+- name: Copy zsh alias file
+  ansible.builtin.copy:
+    src: deb-bak/.zsh_aliases
+    dest: ~/.zsh_aliases
+    owner: yogurt
+    group: yogurt
+    mode: 'preserve'
+
+- name: Copy tmux config
+  ansible.builtin.copy:
+    src: deb-bak/.tmux.conf
+    dest: ~/.tmux.conf
+    owner: yogurt
+    group: yogurt
+    mode: 'preserve'
+
+- name: Copy powerline config
+  ansible.builtin.copy:
+    src: deb-bak/.p10k.zsh
+    dest: ~/.p10k.zsh
+    owner: yogurt
+    group: yogurt
+    mode: 'preserve'
