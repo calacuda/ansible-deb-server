@@ -1,6 +1,7 @@
 TODO's:
-- [  ] add user to sudo group
-- [  ] install packages
-- [  ] update machine
-- [  ] configure ssh to not allow root login?
-- [  ] bring in ZSH/Emacs/Neovim configs 
+- [ ] add repo for zsh-history-substring-search
+- [x] ~~add user to sudo group~~
+- [x] install packages
+- [x] update machine
+- [x] configure ssh to not allow root login?
+- [ ] bring in ZSH/Emacs/Neovim configs 

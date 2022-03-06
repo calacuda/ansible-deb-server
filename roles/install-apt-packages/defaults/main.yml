@@ -1,0 +1,27 @@
+apt_ackages:
+- exa
+- zsh
+- zsh-autosuggestions
+- zsh-syntax-highlighting
+- zsh-history-substring-search
+- bat
+- python3-pip
+- python3-pipdeptree
+- git
+- hub
+- tmux
+- htop
+- sudo
+- doas
+- neovim
+- vim
+- emacs
+- kitty-terminfo
+- tor
+- proxychains4
+- neofetch
+- rg
+- zoxide
+- youtube-dl
+- build-essential
+- python3-ipython
