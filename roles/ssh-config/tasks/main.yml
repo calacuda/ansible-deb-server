@@ -35,3 +35,10 @@
     name: sshd
     state: restarted
   when: sshd_root.changed or sshd_port.changed or sshd_X11.changed
+
+- name: diable ssh login message
+  tags: file,ssh,all_os,ssh_login,config
+  copy:
+    content: ""
+    dest: ~/.hushlogin
+    force: no
