@@ -18,4 +18,3 @@
     - copy-configs
     # - { role: install-rust, become: no }
     - ssh-config
-    - silence-ssh-banner
