@@ -4,6 +4,7 @@ TODO's:
 - [x] install apt packages
 - [x] install git packages
 - [x] update machine
-- [x] ~~configure ssh to not allow root login?~~ (done manually, but id like to automate in in the future)
+- [ ] configure ssh to not allow root login
 - [x] bring in ZSH/Emacs/Neovim configs
 - [ ] install rust (more of a long term thing)
+- [ ] add a git hub bare repo to clone from for config files
