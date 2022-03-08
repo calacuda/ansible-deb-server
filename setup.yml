@@ -14,6 +14,6 @@
     - { role: install-apt-packages, become: yes, when: ansible_os_family == "Debian" }
     - { role: install-git-packages, become: yes, when: ansible_os_family == "Debian" }
     - { role: install-usr-packages, become: no, }
-    - { role: change-default-shell, become: yes, when: ansible_user_shell is not regex("/zsh$") }
+    - { role: change-default-shell, become: yes, when: ansible_user_shell is not regex( "/zsh$" ) }
     # - { role: install-rust, become: no }
     - { role: copy-configs, become: no }
