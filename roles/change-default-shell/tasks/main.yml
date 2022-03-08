@@ -1,3 +1,5 @@
 - name: change to zsh 
+  tags: shell,zsh
   ansible.builtin.shell:
     cmd: "chsh -s $(which zsh) yogurt"
+  when: ansible_user_shell is not regex("/zsh$")

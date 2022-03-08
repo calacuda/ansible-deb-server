@@ -1,4 +1,5 @@
 - name: Copy .config/nvim
+  tags: configs,nvim,sync
   synchronize:
     src: deb-bak/.config/nvim
     dest: ~/.config/
@@ -7,6 +8,7 @@
     mode: 'push'
 
 - name: Copy .zshrc
+  tags: configs,zsh,copy
   ansible.builtin.copy:
     src: deb-bak/.zshrc
     dest: ~/.zshrc
@@ -15,6 +17,7 @@
     mode: 'preserve'
 
 - name: Copy zsh alias file
+  tags: configs,zsh,copy
   ansible.builtin.copy:
     src: deb-bak/.zsh_aliases
     dest: ~/.zsh_aliases
@@ -23,6 +26,7 @@
     mode: 'preserve'
 
 - name: Copy tmux config
+  tags: configs,tmux,copy
   ansible.builtin.copy:
     src: deb-bak/.tmux.conf
     dest: ~/.tmux.conf
@@ -31,6 +35,7 @@
     mode: 'preserve'
 
 - name: Copy powerline config
+  tags: configs,zsh,copy
   ansible.builtin.copy:
     src: deb-bak/.p10k.zsh
     dest: ~/.p10k.zsh

@@ -1,4 +1,5 @@
 - name: clone powerline10k
+  tags: install,apt,git_installs,debian
   ansible.builtin.git:
     repo: https://github.com/romkatv/powerlevel10k.git
     depth: 1
