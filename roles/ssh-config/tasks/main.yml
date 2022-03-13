@@ -1,12 +1,22 @@
 - name: disable root ssh login
   become: yes
-  tags: ssh,config,debian,sshd,root_ssh
+  tags: ssh,config,debian,sshd,ssh_root
   lineinfile:
     path: /etc/ssh/sshd_config
     regexp: '^[\#]?PermitRootLogin'
     line: PermitRootLogin no
   when: ansible_os_family == "Debian"
   register: sshd_root
+
+- name: disable ssh password auth
+  become: yes
+  tags: ssh,config,debian,sshd,ssh_pass,ssh_keybased,ssh_key,ssh_passwd_auth
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^[\#]?PasswordAuthentication'
+    line: "{{ passwdauth }}"
+  when: ansible_os_family == "Debian"
+  register: sshd_passwd_auth
 
 - name: change default ssh port
   become: yes
@@ -30,14 +40,14 @@
 
 - name: restart sshd
   become: yes
-  tags: ssh,service,sshd,debian
+  tags: ssh,service,sshd,debian,ssh_service
   service:
     name: sshd
     state: restarted
-  when: sshd_root.changed or sshd_port.changed or sshd_X11.changed
+  when: sshd_root.changed or sshd_port.changed or sshd_X11.changed or sshd_passwd_auth
 
 - name: diable ssh login message
-  tags: file,ssh,all_os,ssh_login,config
+  tags: file,ssh,all_os,ssh_message,config
   copy:
     content: ""
     dest: ~/.hushlogin
