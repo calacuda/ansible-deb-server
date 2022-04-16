@@ -44,7 +44,7 @@
   service:
     name: sshd
     state: restarted
-  when: sshd_root.changed or sshd_port.changed or sshd_X11.changed or sshd_passwd_auth
+  when: sshd_root.changed or sshd_port.changed or sshd_X11.changed or sshd_passwd_auth.changed
 
 - name: diable ssh login message
   tags: file,ssh,all_os,ssh_message,config
