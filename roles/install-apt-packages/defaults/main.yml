@@ -27,3 +27,4 @@ apt_packages:
 - python3-ipython
 - rsync
 - curl
+- mosh
