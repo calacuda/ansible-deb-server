@@ -343,7 +343,7 @@ function zi() {
 #
 ### enviornment variables
 #
-export EDITOR="neovim"
+export EDITOR="nvim"
 
 #pfetch
 # neofetch
