@@ -27,7 +27,7 @@
 
 - name: install apt packages
   become: yes
-  tags: install,apt,debian,update
+  tags: install,apt,debian
   apt:
     name: "{{ apt_packages }}"
     state: latest
