@@ -8,4 +8,4 @@ TODO's:
 - [x] bring in ZSH/Emacs/Neovim configs
 - [ ] install rust (more of a long term thing)
 - [ ] make a git hub bare repo to clone from for config files
-- [ ] make server groups so proxmox servers ssh configs don't change
+- [x] make server groups so proxmox servers ssh configs don't change
