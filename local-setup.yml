@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  pre_tasks:
+    - name: UPDATE EVERYTHING (Debian)
+      become: yes
+      tags: always
+      apt:
+        upgrade: dist
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+
+- hosts: localhost # others, media
+  roles:
+    - install-apt-packages
+    - install-git-packages
+    - change-default-shell
+    - install-usr-packages
+    #- copy-configs
+    # - { role: install-rust, become: no }
