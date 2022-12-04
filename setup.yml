@@ -1,5 +1,4 @@
 ---
-
 - hosts: all
   pre_tasks:
     - name: UPDATE EVERYTHING (Debian)
@@ -10,13 +9,15 @@
         update_cache: yes
       when: ansible_os_family == "Debian"
 
-- hosts: others, media
-
+- hosts: all # others, media
   roles:
     - install-apt-packages
     - install-git-packages
     - change-default-shell
     - install-usr-packages
-    - copy-configs
+    #- copy-configs
     # - { role: install-rust, become: no }
+
+- hosts: others, VPN, DNS
+  roles:
     - ssh-config

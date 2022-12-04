@@ -1,30 +1,30 @@
 apt_packages:
-- exa
-- zsh
-- zsh-autosuggestions
-- zsh-syntax-highlighting
-- zsh-history-substring-search
-- bat
-- python3-pip
-- python3-pipdeptree
-- git
-- hub
-- tmux
-- htop
-- sudo
-- doas
-- neovim
-- vim
-- emacs
-- kitty-terminfo
-- tor
-- proxychains4
-- neofetch
-- ripgrep
-- zoxide
-- youtube-dl
-- build-essential
-- python3-ipython
-- rsync
-- curl
-- mosh
+  - exa
+  - zsh
+  - zsh-autosuggestions
+  - zsh-syntax-highlighting
+  - zsh-history-substring-search
+  - bat
+  - python3-pip
+  - python3-pipdeptree
+  - git
+  - hub
+  - tmux
+  - htop
+  - sudo
+  - doas
+  - neovim
+  - vim
+  - emacs
+  - kitty-terminfo
+  - tor
+  - proxychains4
+  - neofetch
+  - ripgrep
+  - zoxide
+  - youtube-dl
+  - build-essential
+  - python3-ipython
+  - rsync
+  - curl
+  - mosh
