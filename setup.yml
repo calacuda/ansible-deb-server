@@ -1,23 +1,52 @@
 ---
-- hosts: all
+- hosts: all, localhost
+  name: UPDATE
   pre_tasks:
     - name: UPDATE EVERYTHING (Debian)
       become: yes
-      tags: always
+      tags: 
+        - always
+        - update
+        - debian-update
       apt:
         upgrade: dist
         update_cache: yes
       when: ansible_os_family == "Debian"
+    
+    - name: UPDATE EVERYTHING (Arch)
+      become: yes
+      tags: 
+        - always
+        - update
+        - arch-update
+      community.general.pacman:
+        update_cache: true
+        upgrade: true
+      when: ansible_os_family == "Archlinux"
 
-- hosts: all # others, media
+    - name: UPDATE EVERYTHING (RPM)
+      become: yes
+      tags: 
+        - always
+        - update
+        - rpm-update
+      dnf:
+        update_cache: true
+        name: "*"
+        state: latest
+      when: ansible_os_family == "RedHat"
+
+- hosts: others
+  name: CONFIGURE
   roles:
     - install-apt-packages
     - install-git-packages
     - change-default-shell
     - install-usr-packages
-    #- copy-configs
     # - { role: install-rust, become: no }
-
-- hosts: others, VPN, DNS
-  roles:
     - ssh-config
+
+- hosts: desktops, development
+  name: DESKTOP & DEV SERVER CONFIGURATION
+  roles:
+    #- copy-configs

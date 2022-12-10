@@ -8,4 +8,7 @@ TODO's:
 - [x] bring in ZSH/Emacs/Neovim configs
 - [ ] install rust (more of a long term thing)
 - [ ] make a git hub bare repo to clone from for config files
+  - [x] make a bare repo for configs.
+  - [ ] split git repo into multiple repos. (one for each window manager and one for common configs.)
+  - [ ] make ansible roll/task to clone them.
 - [x] make server groups so proxmox servers ssh configs don't change
