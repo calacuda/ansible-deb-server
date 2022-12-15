@@ -3,7 +3,9 @@
   pre_tasks:
     - name: UPDATE EVERYTHING (Debian)
       become: yes
-      tags: always
+      tags: 
+        - always
+        - update
       apt:
         upgrade: dist
         update_cache: yes
@@ -13,7 +15,6 @@
   roles:
     - install-apt-packages
     - install-git-packages
-    - change-default-shell
-    - install-usr-packages
-    # - copy-configs
-    # - { role: install-rust, become: no }
+    # - install-kali-packages
+    - kali-zsh-packages
+

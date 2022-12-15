@@ -46,7 +46,12 @@
     # - { role: install-rust, become: no }
     - ssh-config
 
-- hosts: desktops, development
-  name: DESKTOP & DEV SERVER CONFIGURATION
+- hosts: development
+  name: DEV SERVERS
+  roles:
+    #- copy-configs
+
+- hosts: desktops
+  name: DESKTOP SERVERS
   roles:
     #- copy-configs

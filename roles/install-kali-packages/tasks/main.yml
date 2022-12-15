@@ -1,0 +1,8 @@
+- name: install apt packages
+  become: yes
+  tags: install,apt,debian
+  apt:
+    name: "kali-linux-headless"
+    state: latest
+    update_cache: yes
+  when: ansible_distribution == "Kali"

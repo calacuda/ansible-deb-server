@@ -1,0 +1,44 @@
+- name: prepare plugins dir
+  become: yes
+  tags: 
+    - zsh
+  ansible.builtin.file:
+    path: /usr/share/zsh/plugins/
+    state: directory
+    mode: '0755'
+
+- name: link zsh-autosuggestions
+  become: yes
+  tags:
+    - zsh
+  ansible.builtin.file:
+    src: /usr/share/zsh-autosuggestions
+    dest: /usr/share/zsh/plugins/zsh-autosuggestions
+    owner: root
+    group: root
+    state: link
+  when: ansible_distribution == "Kali"
+
+- name: link zsh-history-substring-search
+  become: yes
+  tags:
+    - zsh
+  ansible.builtin.file:
+    src: /usr/share/zsh-history-substring-search
+    dest: /usr/share/zsh/plugins/zsh-history-substring-search
+    owner: root
+    group: root
+    state: link
+  when: ansible_distribution == "Kali"
+
+- name: link zsh-syntax-highlighting
+  become: yes
+  tags:
+    - zsh
+  ansible.builtin.file:
+    src: /usr/share/zsh-syntax-highlighting
+    dest: /usr/share/zsh/plugins/zsh-syntax-highlighting
+    owner: root
+    group: root
+    state: link
+  when: ansible_distribution == "Kali"
