@@ -12,3 +12,4 @@ TODO's:
   - [ ] split git repo into multiple repos. (one for each window manager and one for common configs.)
   - [ ] make ansible roll/task to clone them.
 - [x] make server groups so proxmox servers ssh configs don't change
+- [ ] added install for qemu-guest-agent for ARCH and RPM to "enable-qemu" role.
