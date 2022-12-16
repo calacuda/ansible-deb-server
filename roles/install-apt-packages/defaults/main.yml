@@ -28,4 +28,3 @@ apt_packages:
   - rsync
   - curl
   - mosh
-  - qemu-guest-agent
