@@ -1,6 +1,9 @@
 - name: install apt packages
   become: true
-  tags: install,apt,debian
+  tags: 
+    - install
+    - apt
+    - debian
   apt:
     name: "kali-linux-headless"
     state: latest

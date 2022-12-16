@@ -1,6 +1,10 @@
 - name: install qemu-guest-agent (DEBIAN)
   become: true
-  tags: install,apt,debian
+  tags: 
+    - install
+    - apt
+    - debian
+    - qemu
   apt:
     name: qemu-guest-agent
     state: latest
@@ -9,6 +13,9 @@
 
 - name: enable qemu agent on boot
   become: true
+  tags:
+    - systemd
+    - qemu
   ansible.builtin.service:
     name: qemu-guest-agent
     enabled: true
