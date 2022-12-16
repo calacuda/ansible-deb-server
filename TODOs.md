@@ -1,4 +1,7 @@
-TODO's:
+# TODO's
+
+---
+
 - [x] add repo for zsh-history-substring-search
 - [x] ~~add user to sudo group~~ (not doable bc I'm not SSHing in as root)
 - [x] install apt packages
@@ -13,3 +16,5 @@ TODO's:
   - [ ] make ansible roll/task to clone them.
 - [x] make server groups so proxmox servers ssh configs don't change
 - [ ] added install for qemu-guest-agent for ARCH and RPM to "enable-qemu" role.
+  - [x] Arch
+  - [ ] RPM

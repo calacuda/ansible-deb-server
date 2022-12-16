@@ -11,6 +11,17 @@
     update_cache: yes
   when: ansible_os_family == "Debian"
 
+- name: install qemu-guest-agent (DEBIAN)
+  become: true
+  tags: 
+    - install
+    - pacman
+    - arch
+    - qemu
+  pacman:
+    name: qemu-guest-agent
+  when: ansible_os_family == "Archlinux"
+
 - name: enable qemu agent on boot
   become: true
   tags:
