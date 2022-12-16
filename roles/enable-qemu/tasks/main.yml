@@ -11,7 +11,7 @@
     update_cache: yes
   when: ansible_os_family == "Debian"
 
-- name: install qemu-guest-agent (DEBIAN)
+- name: install qemu-guest-agent (ARCH)
   become: true
   tags: 
     - install
