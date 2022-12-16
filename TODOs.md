@@ -6,8 +6,8 @@ TODO's:
 - [x] update machine
 - [x] configure ssh to not allow root login
 - [x] bring in ZSH/Emacs/Neovim configs
-- [ ] install rust (more of a long term thing)
-- [ ] make a git hub bare repo to clone from for config files
+- [x] install rust (more of a long term thing) (pulled from the git repo "https://github.com/fubarhouse/ansible-role-rust")
+- [ ] make a git hub bare repo to clone from for config files (I'll need to set up a local git server bc I dont want to make ALL my dot files public for pricacy reasons.)
   - [x] make a bare repo for configs.
   - [ ] split git repo into multiple repos. (one for each window manager and one for common configs.)
   - [ ] make ansible roll/task to clone them.

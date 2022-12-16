@@ -36,7 +36,7 @@
         state: latest
       when: ansible_os_family == "RedHat"
 
-- hosts: others
+- hosts: others, desktops, development
   name: CONFIGURE
   roles:
     - install-apt-packages
@@ -45,13 +45,16 @@
     - install-usr-packages
     # - { role: install-rust, become: no }
     - ssh-config
+    - enable-qemu
 
 - hosts: development
   name: DEV SERVERS
   roles:
-    #- copy-configs
+    - install-rust  # install rust originally came from "https://github.com/fubarhouse/ansible-role-rust"
+    - deb-zsh-packages
+    # - copy-configs
 
-- hosts: desktops
+- hosts: desktops, development
   name: DESKTOP SERVERS
   roles:
     #- copy-configs

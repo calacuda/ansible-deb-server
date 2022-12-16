@@ -1,5 +1,5 @@
 - name: install gpg package
-  become: yes
+  become: true
   tags: install,apt,debian,update
   apt:
     name: gpg
@@ -7,7 +7,7 @@
   when: ansible_os_family == "Debian"
 
 - name: Add gpg key for zsh-history-substring-search
-  become: yes
+  become: true
   tags: key_adding,key,apt,debian,update,install
   ansible.builtin.apt_key:
     url: https://download.opensuse.org/repositories/shells:zsh-users:zsh-history-substring-search/Debian_11/Release.key
@@ -16,7 +16,7 @@
   when: ansible_os_family == "Debian"
 
 - name: Add repo for zsh-history-substring-search into sources list
-  become: yes
+  become: true
   tags: repo_add,repo,apt,debian,update,install
   ansible.builtin.apt_repository:
     repo: deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-history-substring-search/Debian_11/ /
@@ -26,7 +26,7 @@
   when: ansible_os_family == "Debian"
 
 - name: install apt packages
-  become: yes
+  become: true
   tags: install,apt,debian
   apt:
     name: "{{ apt_packages }}"

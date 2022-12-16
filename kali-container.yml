@@ -16,5 +16,5 @@
     - install-apt-packages
     - install-git-packages
     # - install-kali-packages
-    - kali-zsh-packages
+    - deb-zsh-packages
 

@@ -1,5 +1,5 @@
 - name: prepare plugins dir
-  become: yes
+  become: true
   tags: 
     - zsh
   ansible.builtin.file:
@@ -8,7 +8,7 @@
     mode: '0755'
 
 - name: link zsh-autosuggestions
-  become: yes
+  become: true
   tags:
     - zsh
   ansible.builtin.file:
@@ -20,7 +20,7 @@
   when: ansible_distribution == "Kali"
 
 - name: link zsh-history-substring-search
-  become: yes
+  become: true
   tags:
     - zsh
   ansible.builtin.file:
@@ -32,7 +32,7 @@
   when: ansible_distribution == "Kali"
 
 - name: link zsh-syntax-highlighting
-  become: yes
+  become: true
   tags:
     - zsh
   ansible.builtin.file:
