@@ -5,7 +5,7 @@
     - shannon
   proxmox_kvm:
     vmid: 116
-    api_user: ansible@pam
+    api_user: ansible@pve
     api_password: "{{ proxmox_passwd }}" 
     api_host: blade.home
     state: started
@@ -14,7 +14,7 @@
 - name: Boot VM (kali)
   proxmox_kvm:
     vmid: 106
-    api_user: ansible@pam
+    api_user: ansible@pve
     api_password: "{{ proxmox_passwd }}" 
     api_host: blade.home
     state: started
