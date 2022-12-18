@@ -1,0 +1,41 @@
+- name: Boot VM (shannon)
+  tags:
+    - prepare
+    - boot
+    - shannon
+  proxmox_kvm:
+    vmid: 116
+    api_user: ansible@pam
+    api_password: "{{ ansible_passwd }}" 
+    api_host: blade.home
+    state: started
+    # validate_certs: no
+
+- name: Boot VM (kali)
+  proxmox_kvm:
+    vmid: 106
+    api_user: ansible@pam
+    api_password: "{{ ansible_passwd }}" 
+    api_host: blade.home
+    state: started
+    # validate_certs: no
+
+- name: wait for shannon to boot
+  tags:
+    - prepare
+    - boot
+    - shannon
+  wait_for: 
+    host: shannon.home
+    port: 42
+    sleep: 1
+
+- name: wait for kali to boot
+  tags:
+    - prepare
+    - boot
+    - kali
+  wait_for: 
+    host: kali.home
+    port: 42
+    sleep: 1

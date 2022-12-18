@@ -1,4 +1,9 @@
 ---
+- hosts: proxmox
+  name: BOOT NON-DEFAULT VIRTUAL MACHINES
+  roles:
+    - boot-vms
+
 - hosts: all, localhost
   name: UPDATE
   pre_tasks:
