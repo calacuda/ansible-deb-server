@@ -59,7 +59,7 @@
     - deb-zsh-packages
     # - copy-configs
 
-- hosts: desktops, development
-  name: DESKTOP SERVERS
-  roles:
-    #- copy-configs
+# - hosts: desktops, development
+#   name: DESKTOP SERVERS
+#   roles:
+#     #- copy-configs
