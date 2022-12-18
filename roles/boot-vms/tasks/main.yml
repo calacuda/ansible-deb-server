@@ -6,7 +6,7 @@
   proxmox_kvm:
     vmid: 116
     api_user: ansible@pam
-    api_password: "{{ ansible_passwd }}" 
+    api_password: "{{ proxmox_passwd }}" 
     api_host: blade.home
     state: started
     # validate_certs: no
@@ -15,7 +15,7 @@
   proxmox_kvm:
     vmid: 106
     api_user: ansible@pam
-    api_password: "{{ ansible_passwd }}" 
+    api_password: "{{ proxmox_passwd }}" 
     api_host: blade.home
     state: started
     # validate_certs: no
