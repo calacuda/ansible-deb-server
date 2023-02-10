@@ -1,65 +1,73 @@
 ---
 - hosts: proxmox
   name: BOOT NON-DEFAULT VIRTUAL MACHINES
+  any_errors_fatal: true
   roles:
     - boot-vms
+
+- hosts: proxmox
+  name: START VM HOOKS
+  roles:
+    - vm-hooks
 
 - hosts: all, localhost
   name: UPDATE
   pre_tasks:
     - name: UPDATE EVERYTHING (Debian)
-      become: yes
-      tags: 
+      become: true
+      tags:
         - always
         - update
         - debian-update
-      apt:
+      ansible.builtin.apt:
         upgrade: dist
-        update_cache: yes
+        update_cache: true
       when: ansible_os_family == "Debian"
-    
+
     - name: UPDATE EVERYTHING (Arch)
-      become: yes
-      tags: 
+      become: true
+      tags:
         - always
         - update
         - arch-update
-      pacman:
+      community.general.pacman:  # used to be just "pacman"
         update_cache: true
         upgrade: true
       when: ansible_os_family == "Archlinux"
 
     - name: UPDATE EVERYTHING (RPM)
-      become: yes
-      tags: 
+      become: true
+      tags:
         - always
         - update
         - rpm-update
-      dnf:
+      ansible.builtin.dnf:
         update_cache: true
         name: "*"
-        state: latest
+        # state: "latest"
       when: ansible_os_family == "RedHat"
 
 - hosts: others, desktops, development
-  name: CONFIGURE
+  name: BASE CONFIGURE
   roles:
     - install-apt-packages
     - install-git-packages
     - change-default-shell
     - install-usr-packages
-    # - { role: install-rust, become: no }
+
+- hosts: others
+  name: CONFIGURE SSH
+  roles:
     - ssh-config
+
+- hosts: proxmox_guests
+  name: PROXMOX SPECIFIC
+  roles:
     - enable-qemu
 
-- hosts: development
-  name: DEV SERVERS
+- hosts: desktops, development
+  name: DESKTOP & DEVELOPEMENT SERVERS SETUP
   roles:
-    - install-rust  # install rust originally came from "https://github.com/fubarhouse/ansible-role-rust"
+    - install-rust
     - deb-zsh-packages
     # - copy-configs
-
-# - hosts: desktops, development
-#   name: DESKTOP SERVERS
-#   roles:
-#     #- copy-configs
