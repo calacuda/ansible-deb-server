@@ -1,0 +1,102 @@
+# - name: Make VM hook dir
+#   become: true
+#   tags:
+#     - vm-hooks
+#     - vm-hook_dir
+#     - mkdir
+#   ansible.builtin.file:
+#     path: /usr/share/pve-hooks/
+#     state: directory
+#     mode: u=rwx,g=rx,o=rx
+#   when: inventory_hostname == "blade"
+
+- name: Make VM hook config dir
+  become: true
+  tags:
+    - vm-hooks
+    - vm-hook config dir
+    - mkdir
+  ansible.builtin.file:
+    path: /etc/pve-hooks/
+    state: directory
+    mode: u=rwx,g=rx,o=rx
+  when: inventory_hostname == "blade"
+
+- name: CP VM hooks
+  become: true
+  tags:
+    - vm-hooks
+    - cp_vm-hooks
+  ansible.builtin.copy:
+    src: vm-hooks/hooks/
+    dest: /var/lib/vz/snippets/
+    mode: preserve
+  when: inventory_hostname == "blade"
+
+- name: CP VM Hooks config
+  become: true
+  tags:
+    - vm-hooks
+    - cp vm-hooks config
+  ansible.builtin.copy:
+    src: vm-hooks/config.json
+    dest: /etc/pve-hooks/config.json
+  when: inventory_hostname == "blade"
+
+- name: Register VM Hooks [boot-vm-notif] [shannon]
+  become: true
+  tags:
+    - vm-hooks
+    - register hook
+    - boot-vm-notif
+    - boot hook
+    - shannon
+    - boot hook shannon
+  ansible.builtin.shell: qm set 116 --hookscript local:snippets/boot-vm-notif.py
+  # community.general.proxmox:
+  #   vmid: 116
+  #   # node: shannon
+  #   # hostname: shannon.home
+  #   state: started
+  #   hookscript: /usr/share/pve-hooks/boot-vm-notif.py
+  #   api_user: ansible@pve
+  #   api_password: "{{ proxmox_passwd }}"
+  #   api_host: blade.home
+  when: inventory_hostname == "blade"
+
+- name: Register VM Hooks [boot-vm-notif] [kali]
+  become: true
+  tags:
+    - vm-hooks
+    - register hook
+    - boot-vm-notif
+    - boot hook
+    - kali
+    - boot hook kali
+  ansible.builtin.shell: qm set 106 --hookscript local:snippets/boot-vm-notif.py
+  # community.general.proxmox:
+  #   vmid: 106
+  #   # node: kali
+  #   # hostname: kali.home
+  #   state: started
+  #   hookscript: /usr/share/pve-hooks/boot-vm-notif.py
+  #   api_user: ansible@pve
+  #   api_password: "{{ proxmox_passwd }}"
+  #   api_host: blade.home
+  when: inventory_hostname == "blade"
+
+# - name: Register VM Hooks [<hook-script-name>]
+#   become: true
+#   tags: 
+#     - vm-hooks
+#     - register hook
+#     - <hook-script-name>
+#     - <hook-script nickname>
+#   community.general.proxmox:
+#     vmid: <VMID>
+#     hookscript: /usr/share/pve-hooks/<hook-script-name>.<extension>
+#     api_user: ansible@pve
+#     api_password: "{{ proxmox_passwd }}"
+#     api_host: blade.home
+#   when: inventory_hostname == "blade"
+  
