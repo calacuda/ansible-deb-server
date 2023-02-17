@@ -34,9 +34,16 @@ def get_laptop_ip() -> str:
 
 def send_notif(vmid: str, vm_name: str, phase: str):
     """ sends a notification of a VM booting. """
-    data = json.load({"vmid": vmid, "vm_name": vm_name, "phase": phase})
+    data = json.dumps({"vmid": vmid, "vm_name": vm_name, "phase": phase})
     ip, port = get_laptop_ip()
-    post(f"http://{ip}:{port}", data = data, timeout = 5)
+    url = f"http://{ip}:{port}"
+    try:
+        post(url, data = data, timeout = 5)
+    except Exception as e:
+        # log error to file in future
+        with open("/etc/pve-hooks/errors.log", "a") as f:
+            f.writelines(str(e))
+            f.writelines("\n")
 
 
 def get_vm_name(vmid: str) -> str:
@@ -47,8 +54,9 @@ def get_vm_name(vmid: str) -> str:
 
 def main():
     # if args.phase in ["post-start", "pre-start"]:
-    if args.phase == "post-start":
-        name = get_vm_name(args.vmid)
+    # if args.phase == "post-start":
+    name = get_vm_name(args.vmid)
+    if name:
         send_notif(args.vmid, name, args.phase)
 
 
