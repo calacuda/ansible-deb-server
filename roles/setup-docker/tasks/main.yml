@@ -1,0 +1,100 @@
+---
+# - name: Add gpg key for Docker
+#   become: true
+#   tags: 
+#     - docker
+#     - key_adding
+#     - key
+#     - apt
+#     - debian
+#     - update
+#     - install
+#   ansible.builtin.apt_key:
+#     url: https://download.docker.com/linux/debian/gpg
+#     keyring: /etc/apt/trusted.gpg.d/docker-ce-archive-keyring.gpg
+#     state: present
+#   when: ansible_os_family == "Debian"
+
+# - name: Add docker-ce repo source file
+#   become: true
+#   tags: 
+#     - docker
+#     - key_adding
+#     - key
+#     - apt
+#     - debian
+#     - update
+#     - install
+#   file:
+#     path: /etc/apt/sources.list.d/docker-ce.list
+#     state: touch
+#     group: root
+#     owner: root
+#     mode: 0644
+#   when: ansible_os_family == "Debian"
+
+# - name: Populate docker-ce repo source file
+#   become: true
+#   tags: 
+#     - docker
+#     - key_adding
+#     - key
+#     - apt
+#     - debian
+#     - update
+#     - install
+#   copy:
+#     content: "deb https://download.docker.com/linux/debian bullseye stable\n"
+#     dest: /etc/apt/sources.list.d/docker-ce.list
+#     force: false
+#     group: root
+#     owner: root
+#     mode: 0644
+#   when: ansible_os_family == "Debian"
+
+- name: Install Docker
+  become: true
+  tags:
+    - docker
+    - install
+    - update
+    - debian
+    - kali
+  apt:
+    name: 
+      - docker.io
+      # - docker-ce
+      # - docker-ce-cli
+      # - containerd.io
+    # update_cache: true
+    # update: true
+    state: latest
+  when: ansible_os_family == "Debian"
+
+- name: Enable Docker service
+  become: true
+  tags:
+    - docker
+    - systemd
+    - services
+    - debian
+    - kali
+  ansible.builtin.systemd:
+    state: started
+    enabled: true
+    name: docker
+  when: ansible_os_family == "Debian"
+
+- name: Add docker_user to docker group
+  become: true
+  tags:
+    - docker
+    - systemd
+    - services
+    - debian
+    - kali
+  user:
+    name: "{{ docker_user }}"
+    groups: docker
+    append: true
+

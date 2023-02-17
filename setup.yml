@@ -71,3 +71,4 @@
     - install-rust
     - deb-zsh-packages
     # - copy-configs
+    - setup-docker
