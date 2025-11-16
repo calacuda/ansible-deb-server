@@ -1,6 +1,6 @@
 - name: clone powerline10k
   become: true
-  tags: 
+  tags:
     - install
     - apt
     - git_installs
@@ -9,4 +9,4 @@
     repo: https://github.com/romkatv/powerlevel10k.git
     depth: 1
     dest: /usr/share/zsh-theme-powerlevel10k
-  when: ansible_os_family == "Debian"
+  when: ansible_facts['os_family'] == "Debian"

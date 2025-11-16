@@ -1,6 +1,6 @@
 - name: disable root ssh login
   become: true
-  tags: 
+  tags:
     - ssh
     - config
     - debian
@@ -10,12 +10,12 @@
     path: /etc/ssh/sshd_config
     regexp: '^[\#]?PermitRootLogin'
     line: PermitRootLogin no
-  when: ansible_os_family == "Debian"
+  when: ansible_facts['os_family'] == "Debian"
   register: sshd_root
 
 - name: disable ssh password auth
   become: true
-  tags: 
+  tags:
     - ssh
     - config
     - debian
@@ -28,12 +28,12 @@
     path: /etc/ssh/sshd_config
     regexp: '^[\#]?PasswordAuthentication'
     line: "{{ passwdauth }}"
-  when: ansible_os_family == "Debian"
+  when: ansible_facts['os_family'] == "Debian"
   register: sshd_passwd_auth
 
 - name: change default ssh port
   become: true
-  tags: 
+  tags:
     - ssh
     - config
     - debian
@@ -43,12 +43,12 @@
     path: /etc/ssh/sshd_config
     regexp: '^[\#]{0`,`1}Port '
     line: Port {{ ssh_port }}
-  when: ansible_os_family == "Debian"
+  when: ansible_facts['os_family'] == "Debian"
   register: sshd_port
 
 - name: allow X11 forwarding
   become: true
-  tags: 
+  tags:
     - ssh
     - config
     - X11
@@ -59,12 +59,12 @@
     path: /etc/ssh/sshd_config
     regexp: '^[\#]?X11Forwarding'
     line: X11Forwarding yes
-  when: ansible_os_family == "Debian"
+  when: ansible_facts['os_family'] == "Debian"
   register: sshd_X11
 
 - name: restart sshd
   become: true
-  tags: 
+  tags:
     - ssh
     - service
     - sshd
@@ -76,7 +76,7 @@
   when: sshd_root.changed or sshd_port.changed or sshd_X11.changed or sshd_passwd_auth.changed
 
 - name: diable ssh login message
-  tags: 
+  tags:
     - file
     - ssh
     - all_os
@@ -85,4 +85,4 @@
   copy:
     content: ""
     dest: ~/.hushlogin
-    force: no
+    force: false

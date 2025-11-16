@@ -2,15 +2,19 @@
 - hosts: proxmox
   name: BOOT NON-DEFAULT VIRTUAL MACHINES
   any_errors_fatal: true
+  tags:
+    - boot-vms
   roles:
     - boot-vms
 
 - hosts: proxmox
   name: START VM HOOKS
+  tags:
+    - boot-vms
   roles:
     - vm-hooks
 
-- hosts: all, localhost
+- hosts: all #, localhost
   name: UPDATE
   pre_tasks:
     - name: UPDATE EVERYTHING (Debian)
@@ -21,8 +25,10 @@
         - debian-update
       ansible.builtin.apt:
         upgrade: dist
+        autoremove: true
+        autoclean: true
         update_cache: true
-      when: ansible_os_family == "Debian"
+      when: ansible_facts['os_family'] == "Debian"
 
     - name: UPDATE EVERYTHING (Arch)
       become: true
@@ -33,7 +39,7 @@
       community.general.pacman:  # used to be just "pacman"
         update_cache: true
         upgrade: true
-      when: ansible_os_family == "Archlinux"
+      when: ansible_facts['os_family'] == "Archlinux"
 
     - name: UPDATE EVERYTHING (RPM)
       become: true
@@ -45,9 +51,9 @@
         update_cache: true
         name: "*"
         # state: "latest"
-      when: ansible_os_family == "RedHat"
+      when: ansible_facts['os_family'] == "RedHat"
 
-- hosts: others, desktops, development
+- hosts: others, desktops, development, kube_all #, localhost
   name: BASE CONFIGURE
   roles:
     - install-apt-packages
@@ -60,15 +66,42 @@
   roles:
     - ssh-config
 
-- hosts: proxmox_guests
+- hosts: proxmox_guest_vms
   name: PROXMOX SPECIFIC
   roles:
     - enable-qemu
 
 - hosts: desktops, development
-  name: DESKTOP & DEVELOPEMENT SERVERS SETUP
+  name: DESKTOP & DEVELOPMENT SERVERS SETUP
   roles:
     - install-rust
     - deb-zsh-packages
     # - copy-configs
     - setup-docker
+
+# - hosts: kube_all 
+#   name: KUBERNETES CLUSTER
+#   roles:
+#     - setup-docker
+
+- hosts: ros_dev #, localhost #, ros_deploy
+  name: all ros machines setup
+  roles:
+    - install-apt-packages
+    - install-git-packages
+    - change-default-shell
+    - install-usr-packages
+    - prepare-ros
+    - install-ros
+
+- hosts: ros_dev #, localhost
+  name: ros development machine setup
+  roles:
+    # - install-ros-dev-deps
+    - install-rust
+    - deb-zsh-packages
+
+- hosts: ros_deploy
+  name: ros deploy machine setup
+  roles:
+    - install-ros-deploy-deps

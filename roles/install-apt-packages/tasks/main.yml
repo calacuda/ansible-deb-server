@@ -1,6 +1,6 @@
 - name: install gpg package
   become: true
-  tags: 
+  tags:
     - install
     - apt
     - debian
@@ -8,42 +8,52 @@
   apt:
     name: gpg
     state: latest
-  when: ansible_os_family == "Debian"
+  when: ansible_facts['os_family'] == "Debian"
 
-- name: Add gpg key for zsh-history-substring-search
+# - name: Add gpg key for zsh-history-substring-search
+#   become: true
+#   tags:
+#     - key_adding
+#     - key
+#     - apt
+#     - debian
+#     - update
+#     - install
+#   ansible.builtin.apt_key:
+#     url: https://download.opensuse.org/repositories/shells:zsh-users:zsh-history-substring-search/Debian_11/Release.key
+#     keyring: /etc/apt/trusted.gpg.d/shells_zsh-users_zsh-history-substring-search.gpg
+#     state: present
+#   when: ansible_os_family == "Debian"
+
+# - name: Add repo for zsh-history-substring-search into sources list
+#   become: true
+#   tags:
+#     - repo_add
+#     - repo
+#     - apt
+#     - debian
+#     - update
+#     - install
+#   ansible.builtin.apt_repository:
+#     repo: deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-history-substring-search/Debian_11/ /
+#     state: present
+#     filename: shells:zsh-users:zsh-history-substring-search
+#     update_cache: yes
+#   when: ansible_os_family == "Debian"
+
+- name: update apt packages registry
   become: true
-  tags: 
-    - key_adding
-    - key
+  tags:
+    - install
     - apt
     - debian
-    - update
-    - install
-  ansible.builtin.apt_key:
-    url: https://download.opensuse.org/repositories/shells:zsh-users:zsh-history-substring-search/Debian_11/Release.key
-    keyring: /etc/apt/trusted.gpg.d/shells_zsh-users_zsh-history-substring-search.gpg
-    state: present
-  when: ansible_os_family == "Debian"
-
-- name: Add repo for zsh-history-substring-search into sources list
-  become: true
-  tags: 
-    - repo_add
-    - repo
-    - apt
-    - debian
-    - update
-    - install
-  ansible.builtin.apt_repository:
-    repo: deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-history-substring-search/Debian_11/ /
-    state: present
-    filename: shells:zsh-users:zsh-history-substring-search
+  apt:
     update_cache: yes
-  when: ansible_os_family == "Debian"
+  when: ansible_facts['os_family'] == "Debian"
 
 - name: install apt packages
   become: true
-  tags: 
+  tags:
     - install
     - apt
     - debian
@@ -51,4 +61,4 @@
     name: "{{ apt_packages }}"
     state: latest
     update_cache: yes
-  when: ansible_os_family == "Debian"
+  when: ansible_facts['os_family'] == "Debian"

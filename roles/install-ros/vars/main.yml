@@ -1,0 +1,6 @@
+ros_pkgs:
+  # - ros-foxy-desktop
+  - ros-humble-desktop
+  - python3-argcomplete
+  - ros-dev-tools
+  - python3-colcon-common-extensions
