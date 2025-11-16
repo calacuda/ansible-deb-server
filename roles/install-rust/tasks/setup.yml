@@ -39,7 +39,7 @@
 
 - name: "Rust | Define user variable for non-ssh use"
   set_fact:
-    fubarhouse_user: "{{ ansible_user_id }}"
+    fubarhouse_user: "ansible_facts['user_id']"
   when: ansible_ssh_user is not defined and fubarhouse_user is not defined
 
 - name: "Rust | Get $HOME"
@@ -96,4 +96,3 @@
   when:
     - shell_profiles is defined
     - stat_shell_profiles is not defined
-
