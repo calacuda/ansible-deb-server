@@ -9,7 +9,10 @@
     name: qemu-guest-agent
     state: latest
     update_cache: yes
-  when: ansible_facts['os_family'] == "Debian"
+  when: 
+    - ansible_facts['os_family'] == "Debian"
+    - "'proxmox_guest_ctx' not in group_names"
+
 
 - name: install qemu-guest-agent (ARCH)
   become: true
@@ -20,7 +23,9 @@
     - qemu
   pacman:
     name: qemu-guest-agent
-  when: ansible_facts['os_family'] == "Archlinux"
+  when: 
+    - ansible_facts['os_family'] == "Archlinux"
+    - "'proxmox_guest_ctx' not in group_names"
 
 - name: enable qemu agent on boot
   become: true
@@ -31,3 +36,4 @@
     name: qemu-guest-agent
     enabled: true
     state: started
+  when: "'proxmox_guest_ctx' not in group_names"
